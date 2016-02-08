@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+	<title>ToDo</title>
+</head>
+<body ng-app='MyApp'>
+	<div class='container' ng-controller='Controller'>
+		<h1>To Do App</h1>
+		
+		<table class='table'>
+			<thead>
+				<tr>
+					<th>Task</th>
+					<th>Priority</th>
+					<th>Deadline</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><input class='form-control' ng-model='task.task'></td>
+					<td><input class='form-control' ng-model='task.priority'></td>
+					<td><input class='form-control' ng-model='task.deadline'></td>
+					<td><button ng-class="{'btn btn-info': updated, 'btn btn-primary': !updated}" ng-click='addTask()'>{{actionBtnText}}</td>
+					
+				</tr>
+				<tr ng-repeat='task in tasklist'>
+					<td>{{task.task}}</td>
+					<td>{{task.priority}}</td>
+					<td>{{task.deadline}}</td>
+					<td><input type="checkbox" class='checkbox' name="task.status" value="completed" style="zoom:1.8" ng-true-value='completed' ng-false-value='pending' ng-checked='checked(task._id)'></td>
+					<td><button class='btn btn-danger' ng-click='removeTask(task._id)'>Remove</button></td>
+					<td><button class='btn btn-warning' ng-click='update(task._id)'>Edit</button></td>
+				</tr>	
+			</tbody>
+		</table>	
+		
+	</div>
+	<script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js'></script>
+	<script type="text/javascript" src='controllers/controller.js'></script>
+</body>
+</html>
